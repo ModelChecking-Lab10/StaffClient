@@ -1,0 +1,37 @@
+@page "/addstaff"
+@rendermode InteractiveServer
+@inherits AddStaffBase
+
+<form @onsubmit="HandleValidSubmit">
+    <div class="form-group" style="margin-bottom: 10px;">
+        <label class="col-md-3">Employee ID:</label>
+        <input type="number" class="col-md-5 form-control" @bind="@employee.EmployeeId" />
+    </div>
+    <div class="form-group" style="margin-bottom: 10px;">
+        <label class="col-md-3">First name:</label>
+        <input type="text" class="col-md-5 form-control" @bind="@employee.FirstName" />
+    </div>
+    <div class="form-group" style="margin-bottom: 10px;">
+        <label class="col-md-3">Last name:</label>
+        <input type="text" class="col-md-5 form-control" @bind="@employee.LastName" />
+    </div>
+    <div class="form-group" style="margin-bottom: 10px;">
+        <label class="col-md-3">Email:</label>
+        <input type="text" class="col-md-5 form-control" @bind="@employee.Email" />
+    </div>
+    <div class="form-group" style="margin-bottom: 10px;">
+        <label class="col-md-3">Date of birth:</label>
+        <input type="date" class="col-md-5 form-control" @bind="@employee.DateofBirth" />
+    </div>
+    <div class="form-group" style="margin-bottom: 10px;">
+        <label class="col-md-3">Department ID:</label>
+        <input type="number" class="col-md-5 form-control" @bind="@employee.DepartmentId" />
+    </div>
+    <div class="form-group" style="margin-bottom: 10px;">
+        <label class="col-md-3">Gender ID:</label>
+        <input type="number" class="col-md-5 form-control" @bind="@employee.GenderId" />
+    </div>
+    <div class="form-group" style="margin-bottom: 10px;">
+        <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+</form>
