@@ -10,7 +10,6 @@ public partial class Staff
     public int StaffId { get; set; }
 
     [Required(ErrorMessage = "Staff name is required.")]
-    [RegularExpression(@"^[A-Za-zÀ-ỹ\s\-]{2,50}$", ErrorMessage = "Invalid name format.")]
     public string StaffName { get; set; } = null!;
 
     [Required(ErrorMessage = "Email is required.")]
@@ -22,7 +21,6 @@ public partial class Staff
     public string PhoneNumber { get; set; } = null!;
 
     [Required(ErrorMessage = "Starting date is required.")]
-    [StartingDateCheck]
     public DateTime StartingDate { get; set; } = DateTime.Today;
 
     public string? Photo { get; set; }
