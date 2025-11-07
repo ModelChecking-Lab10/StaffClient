@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StaffClient.Components;
-using StaffClient.Data;
+using StaffClient.Models;
 using StaffClient.Services;
 
 var builder = WebApplication.CreateBuilder(args);

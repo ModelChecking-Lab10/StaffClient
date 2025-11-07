@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Components;
-using StaffClient.Data;
+using StaffClient.Models;
 using StaffClient.Services;
 
 namespace StaffClient.Components.Pages;
 
 public class StaffDetailsBase : ComponentBase
 {
-  public Employee employee { get; set; } = new Employee();
+  public Staff staff { get; set; } = new Staff();
 
   [Inject]
   public IStaffService staffService { get; set; }
@@ -15,16 +15,17 @@ public class StaffDetailsBase : ComponentBase
   public NavigationManager navigation { get; set; }
 
   [Parameter]
-  public String Id { get; set; }
+  public string Id { get; set; }
+
   protected override async Task OnInitializedAsync()
   {
     Id = Id ?? "1";
-    employee = await staffService.GetEmployee(int.Parse(Id));
+    staff = await staffService.GetStaff(int.Parse(Id));
   }
 
-  public async Task DeleteEmployee()
+  public async Task DeleteStaff()
   {
-    await staffService.DeleteEmployee(int.Parse(Id));
+    await staffService.DeleteStaff(int.Parse(Id));
     navigation.NavigateTo("/stafflist", forceLoad: true);
   }
 }

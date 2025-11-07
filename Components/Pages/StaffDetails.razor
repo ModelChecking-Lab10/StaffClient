@@ -3,24 +3,39 @@
 @rendermode InteractiveServer
 @inherits StaffDetailsBase
 
-@if (employee == null || employee.Department == null || employee.Gender == null){
+@if (staff == null)
+{
   <div class="spinner"></div>
-} else{
+}
+else
+{
   <div class="row justify-content-center m-3">
     <div class="col-sm-8">
       <div class="card">
         <div class="card-header text-center">
-          <h1>@employee.FirstName @employee.LastName</h1>
+          <h1>@staff.StaffName</h1>
         </div>
         <div class="card-body text-center">
-          <h4>Employee ID: @employee.EmployeeId</h4>
-          <h4>Email: @employee.Email</h4>
-          <h4>Department: @employee.Department.DepName</h4>
-          <h4>Gender: @employee.Gender.GenName</h4>
+          <div class="mb-3">
+            @if (!string.IsNullOrEmpty(staff.Photo))
+            {
+              <img src="@($"http://localhost:5143/{staff.Photo}")" class="img-fluid rounded" style="max-height: 250px;"
+                alt="@staff.StaffName" />
+            }
+            else
+            {
+              <img src="/images/default-avatar.png" class="img-fluid rounded" style="max-height: 250px;" alt="No photo" />
+            }
+          </div>
+
+          <h4>Staff ID: @staff.StaffId</h4>
+          <h4>Email: @staff.Email</h4>
+          <h4>Phone Number: @staff.PhoneNumber</h4>
+          <h4>Starting Date: @staff.StartingDate.ToShortDateString()</h4>
         </div>
         <div class="card-footer text-center">
           <a href="/stafflist" class="btn btn-primary m-1">Back</a>
-          <button class="btn btn-danger m-1" @onclick="DeleteEmployee">Delete</button>
+          <button class="btn btn-danger m-1" @onclick="DeleteStaff">Delete</button>
         </div>
       </div>
     </div>

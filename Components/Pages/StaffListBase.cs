@@ -1,15 +1,18 @@
 using Microsoft.AspNetCore.Components;
-using StaffClient.Data;
+using StaffClient.Models;
 using StaffClient.Services;
 
 namespace StaffClient.Components.Pages;
 
-public class StaffListBase : ComponentBase{
+public class StaffListBase : ComponentBase
+{
   [Inject]
-  public IStaffService StaffService { get; set; }
-  public IEnumerable<Employee> employees { get; set; }
+  public IStaffService staffService { get; set; }
 
-  protected override async Task OnInitializedAsync(){
-    employees = await StaffService.GetEmployees();
+  public IEnumerable<Staff> staffs { get; set; }
+
+  protected override async Task OnInitializedAsync()
+  {
+    staffs = await staffService.GetStaffs();
   }
 }

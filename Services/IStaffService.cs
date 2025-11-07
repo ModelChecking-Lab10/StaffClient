@@ -1,11 +1,14 @@
-using StaffClient.Data;
+using Microsoft.AspNetCore.Components.Forms;
+using StaffClient.Models;
 
 namespace StaffClient.Services;
 
-public interface IStaffService{
-    Task<IEnumerable<Employee>> GetEmployees();
-    Task<Employee> GetEmployee(int id);   
-    Task<Employee> AddEmployee(Employee employee);
-    Task<Employee> UpdateEmployee(int id, Employee employee);
-    Task<Employee> DeleteEmployee(int id);
+public interface IStaffService
+{
+    Task<IEnumerable<Staff>> GetStaffs();
+    Task<Staff> GetStaff(int id);
+    Task<Staff> AddStaff(Staff Staff);
+    Task<Staff> UpdateStaff(int id, Staff Staff);
+    Task<Staff> DeleteStaff(int id);
+    Task<string> UploadPhoto(IBrowserFile file);
 }

@@ -3,40 +3,48 @@
 @rendermode InteractiveServer
 @inherits EditStaffBase
 
-@if (employee == null || employee.Department == null || employee.Gender == null){
-  <div class="spinner"></div>
-} else{
-    <form @onsubmit="HandleValidSubmit">
+@if (staff == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <EditForm Model="staff" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
         <div class="form-group" style="margin-bottom: 10px;">
-            <label class="col-md-3">Employee ID:</label>
-            <input type="number" class="col-md-5 form-control" @bind="@employee.EmployeeId" />
-        </div>
-        <div class="form-group" style="margin-bottom: 10px;">
-            <label class="col-md-3">First name:</label>
-            <input type="text" class="col-md-5 form-control" @bind="@employee.FirstName" />
-        </div>
-        <div class="form-group" style="margin-bottom: 10px;">
-            <label class="col-md-3">Last name:</label>
-            <input type="text" class="col-md-5 form-control" @bind="@employee.LastName" />
+            <label class="col-md-3">Staff Name:</label>
+            <InputText class="col-md-5 form-control" @bind-Value="staff.StaffName" />
         </div>
         <div class="form-group" style="margin-bottom: 10px;">
             <label class="col-md-3">Email:</label>
-            <input type="text" class="col-md-5 form-control" @bind="@employee.Email" />
+            <InputText class="col-md-5 form-control" @bind-Value="staff.Email" />
         </div>
         <div class="form-group" style="margin-bottom: 10px;">
-            <label class="col-md-3">Date of birth:</label>
-            <input type="date" class="col-md-5 form-control" @bind="@employee.DateofBirth" />
+            <label class="col-md-3">Phone Number:</label>
+            <InputText class="col-md-5 form-control" @bind-Value="staff.PhoneNumber" />
         </div>
         <div class="form-group" style="margin-bottom: 10px;">
-            <label class="col-md-3">Department ID:</label>
-            <input type="number" class="col-md-5 form-control" @bind="@employee.DepartmentId" />
+            <label class="col-md-3">Starting Date:</label>
+            <InputDate class="col-md-5 form-control" @bind-Value="staff.StartingDate" />
         </div>
+
         <div class="form-group" style="margin-bottom: 10px;">
-            <label class="col-md-3">Gender ID:</label>
-            <input type="number" class="col-md-5 form-control" @bind="@employee.GenderId" />
+            <label class="col-md-3">Photo:</label>
+            <InputFile OnChange="HandleFileSelected" />
+
+            @if (!string.IsNullOrEmpty(photoPreview))
+            {
+                <div class="mt-2">
+                    <img src="@photoPreview" style="max-width: 150px; border-radius: 8px;" />
+                </div>
+            }
         </div>
+
         <div class="form-group" style="margin-bottom: 10px;">
             <button type="submit" class="btn btn-primary">Save</button>
+            <a href="/stafflist" class="btn btn-danger m-1">Cancel</a>
         </div>
-    </form>
+    </EditForm>
 }
