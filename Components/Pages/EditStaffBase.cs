@@ -45,7 +45,7 @@ namespace StaffClient.Components.Pages
                 }
                 else
                 {
-                    Console.WriteLine("Lỗi upload ảnh mới.");
+                    Console.WriteLine("Failed to upload new photo.");
                     return;
                 }
             }

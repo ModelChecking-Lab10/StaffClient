@@ -28,7 +28,7 @@ namespace StaffClient.Components.Pages
 
                 if (string.IsNullOrEmpty(photoPath))
                 {
-                    Console.WriteLine("Upload file thất bại, không thể thêm nhân viên.");
+                    Console.WriteLine("File upload failed, unable to add staff.");
                     return;
                 }
             }
