@@ -24,3 +24,4 @@ public partial class Staff
 
     public string? Photo { get; set; }
 }
+

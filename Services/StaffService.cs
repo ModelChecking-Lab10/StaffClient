@@ -48,32 +48,22 @@ public class StaffService : IStaffService
     {
         try
         {
-            // Tạo nội dung form multipart
             using var content = new MultipartFormDataContent();
-
-            // Mở stream từ IBrowserFile
-            // Giới hạn file 10MB
             using var stream = file.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024);
-
-            // Tạo StreamContent
             using var streamContent = new StreamContent(stream);
+
             streamContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(file.ContentType);
 
-            // Thêm file vào form data
             content.Add(content: streamContent, name: "\"file\"", fileName: file.Name);
 
-            // Gọi API Upload
             var response = await httpClient.PostAsync("api/upload", content);
-
             if (response.IsSuccessStatusCode)
             {
-                // Đọc phản hồi JSON { "path": "uploads/file.jpg" }
                 var result = await response.Content.ReadFromJsonAsync<UploadResult>();
                 return result.path;
             }
             else
             {
-                // Xử lý lỗi
                 Console.WriteLine($"Error uploading file: {response.StatusCode}");
                 return null;
             }
@@ -85,7 +75,6 @@ public class StaffService : IStaffService
         }
     }
 
-    // Lớp private nhỏ để đọc kết quả JSON từ API
     private class UploadResult
     {
         public string path { get; set; }
